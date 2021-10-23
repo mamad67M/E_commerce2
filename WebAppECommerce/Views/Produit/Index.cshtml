@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Produit>
+
+<partial name="_Notification"/>
+
+
+
+<div class="container p-3">
+ <div class="row pt-4">
+     <div class="col-6" > <h4 class="text-primary">Liste Prod dans l'Index</h4></div>
+     <div class="col-6 text-end">
+         <a asp-controller="Produit" asp-action="Create" class="btn btn-primary">
+             <i class="bi bi-plus-circle"></i> &nbsp; Create New Prod
+         </a>
+     </div>
+ </div>
+
+    <br/>
+   
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr class="text-center">
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Date de Creation</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="text-center">
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>@item.CreateDat</td>
+                        <td >
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="Produit" asp-action="Edit" asp-route-id="@item.Id" class=" btn btn-primary mx-2">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a asp-controller="Produit" asp-action="Delete" asp-route-id="@item.Id" class=" btn btn-danger mx-2">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </div>
+                        </td>          
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>produit introuvable!</p>
+    }
+
+
+</div>
+
+
+
+
+
